@@ -112,8 +112,16 @@ public class HttpClient {
         System.out.println("args[0]:" + args[0]);
         System.out.println("args[1]:" + args[1]);
         System.out.println("args[2]:" + args[2]);
-        HttpClient client = new HttpClient(args[0], Integer.parseInt(args[1]), args[2], args[3]);
-        return;
+        File file = new File(args[3]);
+
+        // file is there ?
+        if (file.exists()) {
+            HttpClient client = new HttpClient(args[0], Integer.parseInt(args[1]), args[2], args[3]);
+            return;
+        }
+        else{
+            System.out.println("The system cannot find the file specified");
+        }
 
     }
 
