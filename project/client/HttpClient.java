@@ -109,9 +109,14 @@ public class HttpClient {
 
     public static void main(String args[]) {
 
-        System.out.println("args[0]:" + args[0]);
-        System.out.println("args[1]:" + args[1]);
-        System.out.println("args[2]:" + args[2]);
+        if (args.length < 4) {
+            System.out.println("Please Enter Valid Arguments :");
+            System.out.println("args[0]: Server IP");
+            System.out.println("args[1]: Port");
+            System.out.println("args[2]: Command(GET/PUT)");
+            System.out.println("args[3]: FileName");
+            return ;
+        }
         File file = new File(args[3]);
 
         // file is there ?
