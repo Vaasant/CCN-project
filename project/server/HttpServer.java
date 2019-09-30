@@ -65,7 +65,7 @@ class RequestHandler implements Runnable {
                         while ((st=br.readLine()) != null) {
                             totalBytes+=st.getBytes().length;
                             //out.writeUTF(st);
-                            out.writeBytes(st);
+                            out.writeBytes(st+ "\n");
                         }
                         System.out.println("Sent total bytes : " + totalBytes);
                         //out.flush();
