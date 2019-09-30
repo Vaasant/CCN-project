@@ -119,7 +119,7 @@ public class HttpClient {
         }
         File file = new File(args[3]);
         // file is there ?
-        if (!file.exists() and args[2].equals("PUT")) {
+        if (!file.exists() && args[2].equals("PUT")) {
             System.out.println("The system cannot find the file specified");
             return;
         }
