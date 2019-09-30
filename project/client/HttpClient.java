@@ -74,7 +74,7 @@ public class HttpClient {
                 // add the file content
                 String st;
                 while ((st = br.readLine()) != null) {
-                    out.writeBytes(st);
+                    out.writeBytes(st+ "\n");
                 }
                 // Need to figure out why shutdown is needed
                 socket.shutdownOutput();
