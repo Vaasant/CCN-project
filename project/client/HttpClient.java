@@ -16,10 +16,11 @@ public class HttpClient {
         if (method.equals("GET")) {
             header += "Connection: close" + "\r\n";
         } else if (method.equals("PUT")) {
+	    File file = new File(object);
             header += "Connection: Keep-Alive\r\n";
             header += "Accept-Language: en-us\r\n";
             header += "Content-type: text/html\r\n";
-            // header += "Content-Length: 0\r\n";
+            header += "Content-Length:"+file.length()+"\r\n";
         }
 
         header += "\r\n";
@@ -33,9 +34,9 @@ public class HttpClient {
         try {
             socket = new Socket(address, port);
             System.out.println("Connected");
-            System.out.println(command);
+            //System.out.println(command);
 
-            // takes input from terminal
+
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             // sends output to the socket
             out = new DataOutputStream(socket.getOutputStream());
@@ -76,7 +77,7 @@ public class HttpClient {
                 while ((st = br.readLine()) != null) {
                     out.writeBytes(st+ "\n");
                 }
-                // Need to figure out why shutdown is needed
+               
                 socket.shutdownOutput();
                 // close the file
                 br.close();
@@ -118,11 +119,17 @@ public class HttpClient {
             return ;
         }
         File file = new File(args[3]);
+	if(!args[2].equals("PUT") && !args[2].equals("GET")) {
+		System.out.println("Only GET/PUT Command allowed");
+		return;	
+	}
         // file is there ?
         if (!file.exists() && args[2].equals("PUT")) {
             System.out.println("The system cannot find the file specified");
             return;
         }
+	
+	
         
         HttpClient client = new HttpClient(args[0], Integer.parseInt(args[1]), args[2], args[3]);
         return;
