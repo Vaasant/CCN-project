@@ -90,6 +90,7 @@ class RequestHandler implements Runnable {
                     System.out.println("Message Body:");
                     while ((st=in.readLine()) != null) {
                         System.out.println(st+"\n");
+                        st=st+"\n";
                         fos.write(st.getBytes());
                     }
 
